@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Upload X-Ray or CT Image</title>
+  <link rel="stylesheet" href="static\style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Upload X-Ray or CT Image</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <input type="file" id="file-input" name="file" required>
+      <p id="file-name">No file chosen</p>
+      <img id="image-display" src="" alt="Selected Image">
+      <input type="submit" value="Upload">
+    </form>
+    <div class="dropdown">
+      <label for="image-select">Download Sample Image:</label>
+      <select id="image-select" onchange="updateDownloadLink()">
+        <option value="">Select an image</option>
+        <option value="https://drive.google.com/uc?export=download&id=18irGRZiUyytUNKXkdJkn4F2Ca-kjq1bl">lung_cancer</option>
+        <option value="https://drive.google.com/uc?export=download&id=1Ablt89ULhEgIcE3WZ2L4RDwRFX2Ynezq">Covid</option>
+        <option value="https://drive.google.com/uc?export=download&id=1dvWeHkEvhWyJB0Mzk-n4Jz0NekSCaFdC">Normal</option>
+        <option value="https://drive.google.com/uc?export=download&id=13jz7EKXHj_H_HhgirFD1X--hbDLWIH_6">PNEUMONIA</option>
+      </select>
+      <a id="download-link" class="download-link" href="" download style="display:none;">Download</a>
+    </div>
+  </div>
+  <script src="static\script.js"></script>
+  <script>
+    function updateDownloadLink() {
+      const select = document.getElementById('image-select');
+      const link = document.getElementById('download-link');
+      const value = select.value;
+
+      if (value) {
+        link.href = value;
+        link.style.display = 'block';
+      } else {
+        link.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
